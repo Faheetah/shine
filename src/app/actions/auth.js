@@ -8,35 +8,35 @@ export const setHubs = (hubs) => ({ type: 'RECIEVE_HUBS', hubs: hubs })
 
 export const setFetching = (fetching) => ({ type: 'SET_FETCHING', fetching: fetching })
 
-export const setEndpoint = (endpoint) => ({ type: 'SET_ENDPOINT', endpoint: endpoint })
+export const setEndpoint = (endpoint) => {
+  localStorage.setItem('auth.endpoint', endpoint)
+  return { type: 'SET_ENDPOINT', endpoint: endpoint }
+}
+
+export const reset = () => dispatch => {
+  localStorage.removeItem('auth.endpoint')
+  dispatch({ type: 'RESET' })
+  dispatch(authenticate())
+}
+
+export const clearEndpoint = () => {
+  localStorage.removeItem('auth.endpoint')
+  return { type: 'SET_ENDPOINT', endpoint: undefined }
+}
 
 export const setError = (error) => {
   return { type: 'ERROR', error: error }
 }
 
-export const getError = (payload) => dispatch => {
-  if (payload.length === 0) {
-    let error = 'Could not read from hue hub, please ensure the hub is reachable'
-    dispatch(setError(error))
-    return error
-  }
-  if (payload[0].hasOwnProperty('error')) {
-    let error = payload[0]['error']['description']
-    dispatch(setError(error))
-    return error
-  }
-}
-
 export const getEndpoint = ip => (dispatch, getState) => {
-  let endpoint = `http://${ip}/api/`
+  let url = `http://${ip}/api/`
   let body = '{"devicetype": "shine#web"}'
-  fetch(endpoint, {method: 'POST', body: body})
+  fetch(url, {method: 'POST', body: body})
     .then(
       response => response.json()
     )
     .then(
       json => {
-        // @refactor don't rely on side effects
         let state = getState()
 
         if (json[0].hasOwnProperty('error')) {
@@ -48,10 +48,9 @@ export const getEndpoint = ip => (dispatch, getState) => {
             dispatch(setError(json[0]['error']['description']))
           }
         } else {
-          // @todo set local storage
           dispatch(setRetries(0))
           dispatch(setFetching(false))
-          dispatch(setEndpoint(`${endpoint}/${json[0]['success']['username']}`))
+          dispatch(setEndpoint(`${url}/${json[0]['success']['username']}`))
           dispatch(setError(false))
         }
       },
@@ -84,11 +83,12 @@ export const getHubs = () => dispatch => {
 }
 
 export const authenticate = () => (dispatch, getState) => {
-  // @todo local storage check
-  // let endpoint = 'http://192.168.0.239/api/2DrvPOpGQIVN26J1vOvZGeEl9Zmtu1hEiFkwGHFX'
-  let endpoint = ''
+  let endpoint = localStorage.getItem('auth.endpoint')
+
   if (endpoint) {
-    return dispatch(setEndpoint(endpoint))
+    dispatch(setEndpoint(endpoint))
+    dispatch(setFetching(false))
+  } else {
+    dispatch(getHubs())
   }
-  dispatch(getHubs())
 }

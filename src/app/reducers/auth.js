@@ -1,6 +1,8 @@
 const initialState = {
   fetching: true,
   retries: 30,
+  endpoint: false,
+  error: false,
   hubs: []
 }
 
@@ -18,6 +20,8 @@ const AuthReducer = (state = initialState, action) => {
       return Object.assign({}, state, {fetching: action.fetching})
     case 'DECREMENT_RETRIES':
       return Object.assign({}, state, {retries: action.retries})
+    case 'RESET':
+      return Object.assign({}, state, initialState)
     default:
       return state
   }

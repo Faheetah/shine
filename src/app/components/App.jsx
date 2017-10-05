@@ -12,15 +12,15 @@ class App extends Component {
   }
 
   render() {
-    if(this.props.error) {
+    if(this.props.error && this.props.retries < 1) {
       return (
-        <div>{this.props.error}</div>
+        <div>
+          <p>Could not connect to Hue</p>
+          <a href="/" onClick={this.props.reset}>Retry</a>
+        </div>
       )
-    }
-
-    // @todo extract this out
-    if(this.props.error && this.props.retries === 0) {
-      return <div>Retry</div>
+    } else if (this.props.error) {
+      return <div>{this.props.error}</div>
     } else if(this.props.fetching) {
       return <div>Loading</div>
     } else if(this.props.endpoint) {
