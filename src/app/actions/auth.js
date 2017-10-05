@@ -60,13 +60,11 @@ export const getEndpoint = ip => (dispatch, getState) => {
     )
 } 
 
-export const recieveHubs = hubs => {
-  return dispatch => {
-    dispatch(setHubs(hubs))
-    if (hubs.length === 1) {
-      dispatch(getEndpoint(hubs[0]['internalipaddress']))
-    }
-  } 
+export const recieveHubs = hubs => dispatch => {
+  dispatch(setHubs(hubs))
+  if (hubs.length === 1) {
+    dispatch(getEndpoint(hubs[0]['internalipaddress']))
+  }
 }
 
 export const getHubs = () => dispatch => {

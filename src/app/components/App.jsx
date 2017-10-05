@@ -16,23 +16,30 @@ class App extends Component {
       return (
         <div>
           <p>Could not connect to Hue</p>
-          <a href="/" onClick={this.props.reset}>Retry</a>
+          <p onClick={this.props.reset}>Retry</p>
         </div>
       )
     } else if (this.props.error) {
-      return <div>{this.props.error}</div>
+      return (
+        <div>
+          <p>{this.props.error}</p>
+        </div>
+      )
+    } else if(this.props.hubs.length > 1) {
+      return (
+        <div>
+          <p>Multiple hubs found, please select a hub to continue</p>
+          <ul>
+            {this.props.hubs.map(h =>
+              <li key={h.id} onClick={() => this.props.getEndpoint(h.internalipaddress)}>{h.internalipaddress}</li>
+            )}
+          </ul>
+        </div>
+      )
     } else if(this.props.fetching) {
       return <div>Loading</div>
     } else if(this.props.endpoint) {
-      return <div>Light list</div>
-    } else if(this.props.hubs.length > 0) {
-      return (
-        <ul>
-          {this.props.hubs.map(h =>
-            <li key={h.id}>{h.internalipaddress}</li>
-          )}
-        </ul>
-      )
+      <div>Light List</div>
     }
   }
 }
