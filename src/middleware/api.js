@@ -1,4 +1,5 @@
 const api = store => next => action => {
+  console.log(store.getState())
   if (typeof action === 'object' && typeof action.then === 'function') {
     return action.then(
       response => response.json()

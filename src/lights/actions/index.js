@@ -11,6 +11,4 @@ export const getLights = (endpoint) => (dispatch) => {
   )
 }
 
-export const setBri = (id, bri) =>  {
-  dispatch({type: 'SET_LIGHT_BRI', id:4, bri})
-}
+export const setBri = (id, bri) => ({type: 'SET_LIGHT_BRI', id, bri})

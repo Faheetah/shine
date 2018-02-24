@@ -5,12 +5,22 @@ const initialState = {
 export default function lights(state = initialState, action) {
   switch (action.type) {
     case 'SET_LIGHTS':
-      return Object.assign({}, state, {lights: action.lights})
+      return {
+        ...state, lights: action.lights
+      }
     case 'SET_LIGHT_BRI':
       let {id, bri} = action
-      return Object.assign({}, state, {
-        [id]: Object.assign({}, state[id], {bri})
-      })
+
+      return {
+        ...state,
+        lights: {
+          ...state.lights,
+        [id]: {
+          ...state.lights[id],
+          state: {'bri': bri} // state:{} as a nested key, not the Redux state
+        }
+        }
+      }
     default:
       return state
   }
