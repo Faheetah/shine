@@ -1,0 +1,111 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+    background: #111111;
+    color: #DDDDDD;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: white !important;
+    background-color: #0275d8 !important;
+    border-color: #0275d8 !important;
+}
+
+.btn-primary:hover {
+    background-color: #025aa5 !important;
+    border-color: #01549b !important;
+}
+
+.fa-toggle-on, .fa-toggle-off {
+    color: silver;
+}
+
+.slider {
+    background-color: #292929;
+    color: #DDDDDD;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.card {
+    background-color: #222222;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.card-header {
+    font-size: 24px;
+    background-color: #222222;
+    padding: 8px;
+}
+
+.card-block {
+    padding: 0;
+}
+
+.card-text {
+    padding: 8px;
+}
+
+.fa-circle {
+    color: #333333;
+}
+
+.disabled {
+    color: #AA3333;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  height: 36px;
+  width: 100%;
+  margin: 13.8px 0;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  border: 1px solid #000000;
+  margin: -1px 0 -1px 0;
+  height: 38px;
+  width: 36px;
+  background: #DDDDDD;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: 1px solid #000000;
+  height: 36px;
+  width: 36px;
+  margin: -1px 0 -1px 0;
+  border-radius: 0;
+  background: #999999;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+  margin: -1px 0 -1px 0;
+  height: 36px;
+}
