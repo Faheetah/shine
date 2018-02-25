@@ -22,7 +22,7 @@ class Lights extends Component {
         </div>
         <ul>
           {Object.keys(this.props.lights).map((light, i) => 
-            <Light key={i} light={this.props.lights[light]} id={light} setBri={this.setBri} />
+            <Light key={i} light={this.props.lights[light]} endpoint={this.props.endpoint} id={light} setBri={this.setBri} />
           )}
         </ul>
       </div>

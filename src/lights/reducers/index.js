@@ -8,8 +8,9 @@ export default function lights(state = initialState, action) {
       return {
         ...state, lights: action.lights
       }
-    case 'SET_LIGHT_BRI':
-      let {id, bri} = action
+    case 'SET_LIGHT_STATE':
+      let {id, bri, on} = action
+      console.log(on)
 
       return {
         ...state,
@@ -17,7 +18,8 @@ export default function lights(state = initialState, action) {
           ...state.lights,
         [id]: {
           ...state.lights[id],
-          state: {'bri': bri} // state:{} as a nested key, not the Redux state
+          // state:{} as a nested key, not the Redux state
+          state: {...state.lights[id].state, bri, on} 
         }
         }
       }

@@ -16,7 +16,7 @@ const api = store => next => action => {
       }
     ).catch(
       error => {
-        store.dispatch({ type: 'ERROR', error: 'Failed' })
+        store.dispatch({ type: 'ERROR', error: error.toString() })
       }
     )
   }

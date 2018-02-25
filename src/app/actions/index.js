@@ -66,7 +66,7 @@ export const authenticate = (hub) => (dispatch, getState) => {
     )
 }
 
-export const findEndpoint = () => (dispatch, getState) => {
+export const findEndpoint = () => (dispatch) => {
   fetch('https://www.meethue.com/api/nupnp')
     .then(
       response => response.json()
