@@ -4,12 +4,12 @@ import { connect } from 'react-redux'
 
 import _ from 'lodash'
 
-import * as LightActions from '../actions'
-import Light from '../components/Light'
+import * as RoomActions from '../actions'
+import Room from '../components/Room'
 
-class Lights extends Component {
+class Rooms extends Component {
   componentWillMount() {
-    this.props.getLights(this.props.endpoint)
+    this.props.getRooms(this.props.endpoint)
   }
 
   setBri = _.throttle(this.props.setBri, 100)
@@ -21,8 +21,8 @@ class Lights extends Component {
         {this.props.endpoint}
         </div>
         <ul>
-          {Object.keys(this.props.lights).map((light, i) => 
-            <Light key={i} light={this.props.lights[light]} id={light} setBri={this.setBri} />
+          {Object.keys(this.props.rooms).map((room, i) => 
+            <Room key={i} room={this.props.rooms[room]} id={room} setBri={this.setBri} />
           )}
         </ul>
       </div>
@@ -31,15 +31,15 @@ class Lights extends Component {
 }
 
 const mapStateToProps = state => ({
-  lights: state.lights.lights,
+  rooms: state.rooms.rooms,
   endpoint: state.app.endpoint,
 })
 
 const mapDispatchToProps = dispatch => (
-  bindActionCreators(LightActions, dispatch)
+  bindActionCreators(RoomActions, dispatch)
 )
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Lights)
+)(Rooms)

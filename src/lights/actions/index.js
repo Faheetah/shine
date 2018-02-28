@@ -9,7 +9,8 @@ export const getLights = (endpoint) => (dispatch) => {
     )
 }
 
-export const setBri = (endpoint, id, bri) => (dispatch) => {
+export const setBri = (id, bri) => (dispatch, getState) => {
+  const endpoint = getState().app.endpoint
   dispatch({type: 'SET_LIGHT_STATE', id, bri, on: bri > 0})
   dispatch(fetch(`${endpoint}/lights/${id}/state`, {method: 'PUT', body: JSON.stringify({bri, on: +bri > 0})}))
 }

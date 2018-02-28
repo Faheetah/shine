@@ -5,12 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 
 import app from './app/reducers'
 import lights from './lights/reducers'
+import rooms from './rooms/reducers'
 
 import api from './middleware/api'
 
 const RootReducer = combineReducers({
   app,
   lights,
+  rooms,
 })
 
 const configureStore = () => {

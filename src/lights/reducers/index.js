@@ -10,7 +10,6 @@ export default function lights(state = initialState, action) {
       }
     case 'SET_LIGHT_STATE':
       let {id, bri, on} = action
-      console.log(on)
 
       return {
         ...state,

@@ -9,6 +9,7 @@ import Loading from '../components/Loading'
 import Warning from '../components/Warning'
 
 import Lights from '../../lights/containers/Lights'
+import Rooms from '../../rooms/containers/Rooms'
 
 import './App.css'
 
@@ -26,7 +27,8 @@ class App extends Component {
       <Router>
         <div className='container-fluid'>
           <nav className="nav nav-pills" id="navbarNavAltMarkup">
-            <Link className='nav-item nav-link' to="/home">Home</Link>
+            <Link className='nav-item nav-link' to="/rooms">Rooms</Link>
+            <Link className='nav-item nav-link' to="/lights">Lights</Link>
             <span className='nav-item nav-link' to="/" onClick={this.props.linkLight}>link light</span>
           </nav>
 
@@ -37,8 +39,9 @@ class App extends Component {
           {
             this.props.loading ? <Loading /> :
               <div>
-                <Route exact path='/' component={Lights} />
-                <Route path='/home' component={Lights} />
+                <Route exact path='/' component={Rooms} />
+                <Route path='/rooms' component={Rooms} />
+                <Route path='/lights' component={Lights} />
               </div>
           }
         </div>
