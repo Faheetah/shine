@@ -31,7 +31,6 @@ const Room = ({endpoint, room, id, setBri}) => {
         </div>
 
         <div className="card-footer slider">
-          {/* <div>On: {room.action.on.toString()}</div> */}
           <input min="0" max="254" type="range" value={bri} 
             style={{backgroundColor:color}}
             onChange={(e) => setBri(id, +e.target.value)} 

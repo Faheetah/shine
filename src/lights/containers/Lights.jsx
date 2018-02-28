@@ -12,7 +12,7 @@ class Lights extends Component {
     this.props.getLights(this.props.endpoint)
   }
 
-  setBri = _.throttle(this.props.setBri, 100)
+  setBri = _.throttle(this.props.setBri, 100, {leading: true, trailing: true})
 
   render() {
     return (

@@ -36,7 +36,6 @@ const Light = ({endpoint, light, id, setBri}) => {
 
         { light.state.reachable &&
         <div className="card-footer slider">
-          {/* <div>On: {light.state.on.toString()}</div> */}
           <input min="0" max="254" type="range" value={bri} 
             style={{backgroundColor:color}}
             onChange={(e) => setBri(id, +e.target.value)} 
