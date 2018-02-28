@@ -17,6 +17,7 @@ export default function rooms(state = initialState, action) {
           ...state.rooms,
         [id]: {
           ...state.rooms[id],
+          state: {...state.rooms[id].state, any_on: on, all_on: on},
           action: {...state.rooms[id].action, bri, on} 
         }
         }

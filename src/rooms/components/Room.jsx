@@ -4,7 +4,7 @@ const Room = ({endpoint, room, id, setBri}) => {
   let bri = room.state.any_on ? +room.action.bri : 0
 
   let color = 'rgb(80,80,80)'
-  if (room.state.any_on) {
+  if (bri > 0) {
     let b = Math.floor(bri / 3) + 150;
     color = `rgb(${b}, ${b}, 100)`;
   }
