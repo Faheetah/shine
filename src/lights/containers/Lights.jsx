@@ -18,9 +18,6 @@ class Lights extends Component {
     return (
       <div>
         <div>
-        {this.props.endpoint}
-        </div>
-        <div>
           {Object.keys(this.props.lights).map((light, i) => 
             <Light key={i} light={this.props.lights[light]} id={light} setBri={this.setBri} />
           )}

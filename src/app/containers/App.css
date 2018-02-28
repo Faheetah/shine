@@ -55,6 +55,12 @@ html, body {
 
 .fa-circle {
     color: #333333;
+    font-size: 2em;
+}
+
+.fa-lightbulb {
+    font-size: 1em;
+    /* font-size: inherit !important; */
 }
 
 .disabled {

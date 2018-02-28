@@ -29,7 +29,10 @@ class App extends Component {
           <nav className="nav nav-pills" id="navbarNavAltMarkup">
             <Link className='nav-item nav-link' to="/rooms">Rooms</Link>
             <Link className='nav-item nav-link' to="/lights">Lights</Link>
-            <span className='nav-item nav-link' to="/" onClick={this.props.linkLight}>link light</span>
+            <span className='nav-item nav-link' to="/" onClick={this.props.linkLight} style={{color:'#555555',cursor:'pointer'}}>link light</span>
+            <span className='nav-item nav-link'>
+              <a href={this.props.endpoint} style={{color:'#555555'}}>Hue API URL</a>
+            </span>
           </nav>
 
           { 

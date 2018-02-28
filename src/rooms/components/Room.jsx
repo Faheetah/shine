@@ -13,33 +13,29 @@ const Room = ({endpoint, room, id, setBri}) => {
     <div className="card">
       <div className="card-block">
         <div className="card-header">
-          <span className="pointer">
-            <div className="fa-stack fa-lg">
-              <i className="fa fa-circle fa-stack-2x"></i>
-              <i className="fa fa-lightbulb-o fa-stack-1x"></i>
-            </div>
-
-            <div>
-              { room.name } { room.id } 
-            </div>
+          <span className="fa-stack fa-lg" style={{marginRight: '8px'}}>
+            <i className="fas fa-circle fa-stack-2x"></i>
+            <i className="far fa-lightbulb fa-stack-1x" style={{color:color}}></i>
           </span>
 
-          <div className="float-right">
-            <i className="fa fa-2x fa-toggle-on"></i>
-          </div>
+          <span>
+            { room.name } ({ id })
+          </span>
+
+          <span className="float-right">
+            <i className={`fa fa-2x fa-toggle-on ${!room.action.on && 'fa-rotate-180'}`}
+               onClick={() => setBri(id, bri > 0 ? 0 : 255)}
+               style={{cursor: 'pointer'}}
+            ></i>
+          </span>
         </div>
 
         <div className="card-footer slider">
-          <div>Name: {room.name}</div>
-          <div>Id: {id}</div>
-          <div>On: {room.action.on.toString()}</div>
-          <div>Brightness: {bri}</div>
-          <div className="card-footer slider">
-            <input min="0" max="254" type="range" value={bri} 
-              style={{backgroundColor:color}}
-              onChange={(e) => setBri(id, +e.target.value)} 
-            />
-          </div>
+          {/* <div>On: {room.action.on.toString()}</div> */}
+          <input min="0" max="254" type="range" value={bri} 
+            style={{backgroundColor:color}}
+            onChange={(e) => setBri(id, +e.target.value)} 
+          />
         </div>
       </div>
     </div>

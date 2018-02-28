@@ -18,9 +18,6 @@ class Rooms extends Component {
     return (
       <div>
         <div>
-        {this.props.endpoint}
-        </div>
-        <div>
           {Object.keys(this.props.rooms).map((room, i) => 
             <Room key={i} room={this.props.rooms[room]} id={room} setBri={this.setBri} />
           )}
