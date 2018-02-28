@@ -10,18 +10,39 @@ const Room = ({endpoint, room, id, setBri}) => {
   }
 
   return (
-    <li className='alert' role='alert'>
-      <div>Name: {room.name}</div>
-      <div>Id: {id}</div>
-      <div>On: {room.action.on.toString()}</div>
-      <div>Brightness: {bri}</div>
-      <div className="card-footer slider">
-        <input min="0" max="254" type="range" value={bri} 
-          style={{backgroundColor:color}}
-          onChange={(e) => setBri(id, +e.target.value)} 
-         />
+    <div className="card">
+      <div className="card-block">
+        <div className="card-header">
+          <span className="pointer">
+            <div className="fa-stack fa-lg">
+              <i className="fa fa-circle fa-stack-2x"></i>
+              <i className="fa fa-lightbulb-o fa-stack-1x"></i>
+            </div>
+
+            <div>
+              { room.name } { room.id } 
+            </div>
+          </span>
+
+          <div className="float-right">
+            <i className="fa fa-2x fa-toggle-on"></i>
+          </div>
+        </div>
+
+        <div className="card-footer slider">
+          <div>Name: {room.name}</div>
+          <div>Id: {id}</div>
+          <div>On: {room.action.on.toString()}</div>
+          <div>Brightness: {bri}</div>
+          <div className="card-footer slider">
+            <input min="0" max="254" type="range" value={bri} 
+              style={{backgroundColor:color}}
+              onChange={(e) => setBri(id, +e.target.value)} 
+            />
+          </div>
+        </div>
       </div>
-    </li>
+    </div>
   )
 }
 

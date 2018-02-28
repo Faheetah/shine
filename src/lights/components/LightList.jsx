@@ -4,11 +4,11 @@ import Light from './Light'
 
 const LightList = ({lights}) => {
   return (
-    <ul>
+    <div>
       {Object.keys(lights).map((light, i) => 
         <Light key={i} light={lights[light]} id={light} />
       )}
-    </ul>
+    </div>
   )
 }
 

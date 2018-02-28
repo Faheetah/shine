@@ -20,11 +20,11 @@ class Rooms extends Component {
         <div>
         {this.props.endpoint}
         </div>
-        <ul>
+        <div>
           {Object.keys(this.props.rooms).map((room, i) => 
             <Room key={i} room={this.props.rooms[room]} id={room} setBri={this.setBri} />
           )}
-        </ul>
+        </div>
       </div>
     )
   }

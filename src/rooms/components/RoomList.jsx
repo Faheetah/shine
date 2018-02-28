@@ -4,11 +4,11 @@ import Room from './Room'
 
 const RoomList = ({rooms}) => {
   return (
-    <ul>
+    <div>
       {Object.keys(rooms).map((room, i) => 
         <Room key={i} room={rooms[room]} id={room} />
       )}
-    </ul>
+    </div>
   )
 }
 

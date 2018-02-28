@@ -25,7 +25,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className='container-fluid'>
+        <div className='container'>
           <nav className="nav nav-pills" id="navbarNavAltMarkup">
             <Link className='nav-item nav-link' to="/rooms">Rooms</Link>
             <Link className='nav-item nav-link' to="/lights">Lights</Link>
