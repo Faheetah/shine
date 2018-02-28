@@ -4,10 +4,13 @@ export const setError = (error) => ({ type: 'ERROR', error })
 export const setLoading = (loading) => ({ type: 'LOADING', loading })
 export const setRetries = (retries) => ({ type: 'SET_RETRIES', retries })
 export const decrementRetries = () => ({ type: 'DECREMENT_RETRIES' })
-export const setEndpoint = (endpoint) => ({ type: 'SET_ENDPOINT', endpoint })
+export const setEndpoint = (endpoint) => (dispatch) => {
+ localStorage.setItem('endpoint', endpoint)
+  dispatch({ type: 'SET_ENDPOINT', endpoint })
+}
 
-export const linkLight = () => (dispatch) => {
-  let endpoint = 'http://192.168.1.12/api/oTOeUZMGJrqJdB4hQiFYeA3-mZ-WjQgsCkByvggX/config'
+export const linkLight = () => (dispatch, getState) => {
+  let endpoint = getState().app.endpoint
 
   return fetch(endpoint, { method: 'PUT', body: '{"linkbutton":true}' })
     .then(
@@ -44,6 +47,7 @@ export const authenticate = (hub) => (dispatch, getState) => {
       json => {
         if(json.length > 0 && json[0].hasOwnProperty('error')) {
           if(json[0]['error']['type'] === 101) {
+            dispatch(setError('Please press the link button'))
             setTimeout(() => dispatch(authenticate(hub)), 1000)
           } else {
             dispatch(setError(json[0]['error']['description']))
@@ -55,6 +59,7 @@ export const authenticate = (hub) => (dispatch, getState) => {
             let endpoint = `http://${hub}/api/${user}`
             dispatch(setEndpoint(endpoint))
             dispatch(setLoading(false))
+            dispatch(setError(false))
           } else {
             dispatch(setError(`unparsable response ${JSON.stringify(json)}`))
           }
@@ -67,19 +72,27 @@ export const authenticate = (hub) => (dispatch, getState) => {
 }
 
 export const findEndpoint = () => (dispatch) => {
-  fetch('https://www.meethue.com/api/nupnp')
-    .then(
-      response => response.json()
-    )
-    .then(
-      json => {
-        if(json.length === 1 && json[0].hasOwnProperty('internalipaddress')) {
-          dispatch(setRetries(120))
-          dispatch(authenticate(json[0]['internalipaddress']))
-        } else {
-          dispatch(setError('Could not find a hub, got ' + JSON.stringify(json)))
-        }
-      },
-      error => dispatch(setError(error))
-    )
+  let storedEndpoint = localStorage.getItem('endpoint')
+
+  if(storedEndpoint) {
+    dispatch(setEndpoint(storedEndpoint))
+    dispatch(setError(false))
+    dispatch(setLoading(false))
+  } else {
+    fetch('https://www.meethue.com/api/nupnp')
+      .then(
+        response => response.json()
+      )
+      .then(
+        json => {
+          if(json.length === 1 && json[0].hasOwnProperty('internalipaddress')) {
+            dispatch(setRetries(120))
+            dispatch(authenticate(json[0]['internalipaddress']))
+          } else {
+            dispatch(setError('Could not find a hub, got ' + JSON.stringify(json)))
+          }
+        },
+        error => dispatch(setError(error))
+      )
+  }
 }

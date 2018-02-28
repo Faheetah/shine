@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Light = ({light}) => {
+const Loading = () => {
   return (
     <div className='alert alert-info' role='alert'>
-      {JSON.stringify(light)}
+      Loading
     </div>
   )
 }
 
-export default Light
+export default Loading

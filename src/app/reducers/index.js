@@ -1,8 +1,7 @@
 const initialState = {
   loading: true,
   error: false,
-  // endpoint: false,
-  endpoint: 'http://192.168.1.12/api/oTOeUZMGJrqJdB4hQiFYeA3-mZ-WjQgsCkByvggX',
+  endpoint: false,
   retries: 0,
 }
 

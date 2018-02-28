@@ -1,6 +1,7 @@
 import throttle from 'lodash/throttle'
+
 // probably will be the middleware
-const asdf = () => {
+export const syncState = (store) => {
   store.subscribe(throttle(() => {
     saveState({
       auth: store.getState().auth,
@@ -29,3 +30,5 @@ const saveState = (state) => {
     console.log(err)
   }
 }
+
+export default saveState
