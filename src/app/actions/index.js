@@ -12,7 +12,7 @@ export const setEndpoint = (endpoint) => (dispatch) => {
 export const linkLight = () => (dispatch, getState) => {
   let endpoint = getState().app.endpoint
 
-  return fetch(endpoint, { method: 'PUT', body: '{"linkbutton":true}' })
+  return fetch(endpoint + '/config', { method: 'PUT', body: '{"linkbutton":true}' })
     .then(
       response => response.json()
     )
