@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Light = ({endpoint, light, id, setBri}) => {
+const Light = ({endpoint, light, id, setBri, editLightName}) => {
   let bri = light.state.on ? +light.state.bri : 0
 
   let color = 'rgb(80,80,80)'
@@ -20,8 +20,8 @@ const Light = ({endpoint, light, id, setBri}) => {
             <i className="far fa-lightbulb fa-stack-1x" style={{color:color}}></i>
           </span>
 
-          <span>
-            { light.name } ({ id })
+          <span onClick={() => editLightName(id)}>
+            { light.name }
           </span>
 
         { light.state.reachable &&

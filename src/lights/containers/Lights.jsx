@@ -19,7 +19,14 @@ class Lights extends Component {
       <div>
         <div>
           {Object.keys(this.props.lights).map((light, i) => 
-            <Light key={i} light={this.props.lights[light]} id={light} setBri={this.setBri} />
+            <Light 
+              key={i} 
+              light={this.props.lights[light]} 
+              id={light} a
+              setBri={this.setBri} 
+              editLightName={this.props.editLightName} 
+              setLightName={this.props.setLightName}
+            />
           )}
         </div>
       </div>
