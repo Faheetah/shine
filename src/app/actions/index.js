@@ -29,6 +29,25 @@ export const linkLight = () => (dispatch, getState) => {
     )
 }
 
+export const searchLights = () => (dispatch, getState) => {
+  let endpoint = getState().app.endpoint
+  return fetch(endpoint + '/lights', { method: 'POST' })
+    .then(
+      response => response.json()
+    )
+    .then (
+      json => {
+        if (json[0].hasOwnProperty('error')) {
+          dispatch(setError(json[0]['error']['description']))
+        } else {
+          dispatch(setError('searching for lights'))
+          setTimeout(() => dispatch(setError()), 30000)
+        }
+      },
+      error => dispatch(setError(error))
+    )
+}
+
 export const authenticate = (hub) => (dispatch, getState) => {
   const retries = getState().app.retries
 
