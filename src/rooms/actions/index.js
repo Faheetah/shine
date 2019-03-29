@@ -33,3 +33,17 @@ export const setBri = (id, bri) => (dispatch, getState) => {
   dispatch({type: 'SET_ROOM_STATE', id, bri, on: bri > 0})
   setBriApi(endpoint, id, payload, dispatch)
 }
+
+export const editRoomName = (id) => (dispatch, getState) => {
+  let endpoint = getState().app.endpoint
+  let name = prompt("New Name")
+  if(!name) {
+    return
+  }
+
+  dispatch(fetch(`${endpoint}/groups/${id}`, {method: 'PUT', body: JSON.stringify({name})}))
+    .then(
+      response => dispatch({ type: 'EDIT_ROOM_NAME', id, name })
+    )
+  
+} 

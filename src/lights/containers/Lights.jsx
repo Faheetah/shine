@@ -25,7 +25,6 @@ class Lights extends Component {
               id={light} a
               setBri={this.setBri} 
               editLightName={this.props.editLightName} 
-              setLightName={this.props.setLightName}
             />
           )}
         </div>

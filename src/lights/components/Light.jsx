@@ -20,7 +20,7 @@ const Light = ({endpoint, light, id, setBri, editLightName}) => {
             <i className="far fa-lightbulb fa-stack-1x" style={{color:color}}></i>
           </span>
 
-          <span onClick={() => editLightName(id)}>
+          <span onClick={() => editLightName(id)} style={{cursor: 'pointer'}}>
             { light.name }
           </span>
 

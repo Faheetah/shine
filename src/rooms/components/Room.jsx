@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Room = ({endpoint, room, id, setBri}) => {
+const Room = ({endpoint, room, id, setBri, editRoomName}) => {
   let bri = room.state.any_on ? +room.action.bri : 0
 
   let color = 'rgb(80,80,80)'
@@ -18,8 +18,8 @@ const Room = ({endpoint, room, id, setBri}) => {
             <i className="far fa-lightbulb fa-stack-1x" style={{color:color}}></i>
           </span>
 
-          <span>
-            { room.name } ({ id })
+          <span onClick={() => editRoomName(id)} style={{cursor: 'pointer'}}>
+            { room.name }
           </span>
 
           <span className="float-right">

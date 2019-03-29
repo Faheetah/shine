@@ -19,7 +19,13 @@ class Rooms extends Component {
       <div>
         <div>
           {Object.keys(this.props.rooms).map((room, i) => 
-            <Room key={i} room={this.props.rooms[room]} id={room} setBri={this.setBri} />
+            <Room 
+              key={i} 
+              room={this.props.rooms[room]} 
+              id={room} 
+              setBri={this.setBri} 
+              editRoomName={this.props.editRoomName} 
+            />
           )}
         </div>
       </div>

@@ -9,17 +9,26 @@ export default function rooms(state = initialState, action) {
         ...state, rooms: action.rooms
       }
     case 'SET_ROOM_STATE':
-      let {id, bri, on} = action
-
       return {
         ...state,
         rooms: {
           ...state.rooms,
-        [id]: {
-          ...state.rooms[id],
-          state: {...state.rooms[id].state, any_on: on, all_on: on},
-          action: {...state.rooms[id].action, bri, on} 
+        [action.id]: {
+          ...state.rooms[action.id],
+          state: {...state.rooms[action.id].state, any_on: action.on, all_on: action.on},
+          action: {...state.rooms[action.id].action, bri: action.bri, on: action.on} 
         }
+        }
+      }
+    case 'EDIT_ROOM_NAME':
+      return {
+        ...state,
+        rooms: {
+          ...state.rooms,
+          [action.id]: {
+            ...state.rooms[action.id],
+            name: action.name
+          }
         }
       }
     default:
